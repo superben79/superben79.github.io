@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://fiserveft.fiapi.com/ICLib" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://fiserveft.fiapi.com/ICLib" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Rev: 25305 $">
+	<!--***********************************************************************************************************-->
+	<!--Client Information Aggregate  -->
+	<!--***********************************************************************************************************-->
+	<xsd:complexType name="RecordKey_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the Client Information Aggregate.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="SystemRecordIdentifier" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>The definition of the System Record Identifier Type.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Config_Type">
+		<xsd:annotation>
+			<xsd:documentation>The defintion for the Configuration Aggregate.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ElementName" type="xsd:string" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>The name of the element the constraint applies to.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ParentElementName" type="xsd:string" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>The name of the parent element of the element node.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ElementReadonly" type="xsd:boolean" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>Specifies if the element is readonly.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ElementApplicable" type="xsd:boolean" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>Specifies if the element is applicable.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ElementMandatory" type="xsd:boolean" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>Specifies if the element is required.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="DateWithoutTimezone">
+		<xsd:annotation>
+			<xsd:documentation>The definition of Date that does not contain Timezone .</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:date">
+			<xsd:pattern value="[^:Z]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DateTimeWithoutTimezone">
+		<xsd:annotation>
+			<xsd:documentation>The definition of DateTime that does not contain Timezone</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:dateTime">
+			<xsd:pattern value=".+T[^Z+\-]+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

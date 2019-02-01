@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://fiserveft.fiapi.com/ICLRewards" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://fiserveft.fiapi.com/ICLRewards" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1">
+	<!--***********************************************************************************************************-->
+	<!--Complex Type Definitions -->
+	<!--***********************************************************************************************************-->
+	<xsd:complexType name="RewardsKeyInfo_Type">
+		<xsd:annotation>
+			<xsd:documentation>This section holds information of rewards Card Key</xsd:documentation>
+		</xsd:annotation><xsd:sequence>
+			<xsd:element name="CardNumber" type="CardNumber_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This section holds information of the credit card number of the customer.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AccountNumber" type="AccountNumber_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This section holds information of account number of the customer for a request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="UseMultiAuth" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>This section holds information of UseMultiAuth for a request. If it is true,
+						then total points will include all multi authed accounts.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="PointsInfo_Type">
+		<xsd:annotation>
+			<xsd:documentation>This section holds information of points associated to a cardholder record.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="PointsToDate" type="PointToDate_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to total points earned to date.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="UnBurnedPoints" type="UnBurnedPoints_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to total points not used
+						yet,includes both vested and unvested points.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="VestedPoints" type="VestedPoints_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to total points
+						not yet used and vested.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CCName" type="CCName_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to Card name.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CCType" type="CCType_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to type of the card.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="CCStatus" type="xsd:boolean" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to status of the
+						card whether the card is currently earning rewards or not.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="EarnStart" type="EarnStart_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to earliest date
+						on which card could earn rewards.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="EarnEnd" type="EarnEnd_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to end date on
+						which card stopped earning rewards.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RedemptionDetails_Type">
+		<xsd:annotation>
+				<xsd:documentation>This section holds information related to objects, each
+						objects defines a redemption.
+				</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="BurnID" type="BurnID_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to affinity reference number for transaction.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Points" type="Points_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to number of points to burn.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Method" type="Method_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to Method.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BurnDate" type="BurnDate_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to BurnDate.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Description" type="Description_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to text to be added to the comment in the burn.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="B2SorderID" type="B2SorderID_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to B2SorderID which is assigned to the
+						order when it was processed  by the 3rd party catalog provider while making redemptions.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RedemptionLineItems" type="RedemptionLineItems_Type" minOccurs="0" maxOccurs="unbounded" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to array of objects when method is b2s</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RedemptionLineItems_Type">
+		<xsd:annotation>
+			<xsd:documentation>This data element contains information related to LineItems objects.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ItemName" type="ItemName_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to name of the item.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ItemPoints" type="ItemPoints_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to points earned by the item.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Quantity" type="Quantity_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>This data element contains information related to Quantity of the item.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<!--***********************************************************************************************************-->
+	<!--Simple Type Definitions  -->
+	<!--***********************************************************************************************************-->
+
+	<xsd:simpleType name="Description_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the Description Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Reference_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the reference Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="PointToDate_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the PointsToDate Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="VestedPoints_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the vested points Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="BurnID_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the burnID Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ScoreID_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the ScoreID.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Points_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the points Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Method_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the method Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="B2SorderID_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the B2SorderID Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ItemName_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the item name Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ItemPoints_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the item points Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Quantity_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the quantity type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="UnBurnedPoints_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the unburned points Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="AccountNumber_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the account number type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="22"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="CardNumber_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the Card number Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="22"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="AsOfDate_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the asofDate Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:date"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="Email_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the Email Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="DestURL_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the DestURL Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="BurnDate_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the Burn Date Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:dateTime"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="CCName_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the Card Name Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="CCType_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the Card type Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="EarnStart_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the Earn Start Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:date"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="EarnEnd_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the Earn End Type.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:date"/>
+	</xsd:simpleType>
+
+</xsd:schema>
+
+
+
+
+
+
+

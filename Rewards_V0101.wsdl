@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:intf="http://webservices.fiserveft.com/services/RewardsService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:figetredemptions="http://fiserveft.fiapi.com/fiGetRedemptions" xmlns:fiaddpoints="http://fiserveft.fiapi.com/fiAddPoints" xmlns:fiburnpoints="http://fiserveft.fiapi.com/fiBurnPoints" xmlns:figetpoints="http://fiserveft.fiapi.com/fiGetPoints" xmlns:fisso="http://fiserveft.fiapi.com/fiGetSSOURL"  targetNamespace="http://webservices.fiserveft.com/services/RewardsService">
+	<wsdl:types>
+		<xsd:schema xmlns="http://webservices.fiserveft.com" targetNamespace="http://webservices.fiserveft.com" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1.0">
+			<xsd:import namespace="http://fiserveft.fiapi.com/fiGetRedemptions" schemaLocation="fiGetRedemptions.xsd"/>
+			<xsd:import namespace="http://fiserveft.fiapi.com/fiGetPoints" schemaLocation="fiGetPoints.xsd"/>
+			<xsd:import namespace="http://fiserveft.fiapi.com/fiBurnPoints" schemaLocation="fiBurnPoints.xsd"/>
+			<xsd:import namespace="http://fiserveft.fiapi.com/fiAddPoints" schemaLocation="fiAddPoints.xsd"/>
+			<xsd:import namespace="http://fiserveft.fiapi.com/fiGetSSOURL" schemaLocation="fiGetSSOURL.xsd"/>
+			<xsd:import namespace="http://fiserveft.fiapi.com/ICLib" schemaLocation="ICLib.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="GetRedemptionsServiceReq">
+		<wsdl:part name="fiAPIRequest" element="figetredemptions:fiAPI" />
+	</wsdl:message>
+
+	<wsdl:message name="GetRedemptionsServiceResp">
+		<wsdl:part name="fiAPIResponse"
+			element="figetredemptions:fiAPI" />
+	</wsdl:message>
+
+	<wsdl:message name="GetPointsServiceReq">
+		<wsdl:part name="fiAPIRequest" element="figetpoints:fiAPI" />
+	</wsdl:message>
+
+	<wsdl:message name="GetPointsServiceResp">
+		<wsdl:part name="fiAPIResponse" element="figetpoints:fiAPI" />
+	</wsdl:message>
+
+	<wsdl:message name="BurnPointsServiceReq">
+		<wsdl:part name="fiAPIRequest" element="fiburnpoints:fiAPI" />
+	</wsdl:message>
+
+	<wsdl:message name="BurnPointsServiceResp">
+		<wsdl:part name="fiAPIResponse" element="fiburnpoints:fiAPI" />
+	</wsdl:message>
+
+	<wsdl:message name="AddPointsServiceReq">
+		<wsdl:part name="fiAPIRequest" element="fiaddpoints:fiAPI" />
+	</wsdl:message>
+
+	<wsdl:message name="AddPointsServiceResp">
+		<wsdl:part name="fiAPIResponse" element="fiaddpoints:fiAPI" />
+	</wsdl:message>
+
+	<wsdl:message name="GetSSOURLServiceReq">
+		<wsdl:part name="fiAPIRequest" element="fisso:fiAPI" />
+	</wsdl:message>
+
+	<wsdl:message name="GetSSOURLServiceResp">
+		<wsdl:part name="fiAPIResponse" element="fisso:fiAPI" />
+	</wsdl:message>
+
+
+
+	<wsdl:portType name="RewardsServicePortType">
+		<wsdl:operation name="getRedemptions">
+			<wsdl:input message="intf:GetRedemptionsServiceReq"/>
+			<wsdl:output message="intf:GetRedemptionsServiceResp"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPoints">
+			<wsdl:input message="intf:GetPointsServiceReq"/>
+			<wsdl:output message="intf:GetPointsServiceResp"/>
+		</wsdl:operation>
+		<wsdl:operation name="burnPoints">
+			<wsdl:input message="intf:BurnPointsServiceReq"/>
+			<wsdl:output message="intf:BurnPointsServiceResp"/>
+		</wsdl:operation>
+		<wsdl:operation name="addPoints">
+			<wsdl:input message="intf:AddPointsServiceReq"/>
+			<wsdl:output message="intf:AddPointsServiceResp"/>
+		</wsdl:operation>
+
+		<wsdl:operation name="getSSOURL">
+			<wsdl:input message="intf:GetSSOURLServiceReq"/>
+			<wsdl:output message="intf:GetSSOURLServiceResp"/>
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+	<wsdl:binding name="RewardsServiceSOAPBinding" type="intf:RewardsServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getRedemptions">
+			<soap:operation soapAction="getRedemptions" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPoints">
+			<soap:operation soapAction="getPoints" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="burnPoints">
+			<soap:operation soapAction="burnPoints" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addPoints">
+			<soap:operation soapAction="addPoints" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getSSOURL">
+			<soap:operation soapAction="getSSOURL" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="Rewards_V0101">
+		<wsdl:port name="RewardsService" binding="intf:RewardsServiceSOAPBinding">
+			<soap:address location="http://webservices.fiserveft.com/services/RewardsService"/>
+		</wsdl:port>
+	</wsdl:service>
+	<!-- message declns -->
+	<!-- port type declns -->
+	<!-- binding declns -->
+	<!-- service decln -->
+</wsdl:definitions>

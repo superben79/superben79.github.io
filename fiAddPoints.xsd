@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://fiserveft.fiapi.com/fiAddPoints" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fi="http://integration.fiapi.com" xmlns:iclr="http://fiserveft.fiapi.com/ICLRewards" targetNamespace="http://fiserveft.fiapi.com/fiAddPoints" elementFormDefault="qualified" attributeFormDefault="unqualified" version="$Rev: 25305 $">
+	<xsd:import namespace="http://integration.fiapi.com" schemaLocation="fiAPI.xsd"/>
+	<xsd:import namespace="http://fiserveft.fiapi.com/ICLRewards" schemaLocation="ICLRewards.xsd"/>
+	<xsd:element name="fiAPI">
+		<xsd:annotation>
+			<xsd:documentation>The fiAPI element is the root element name for all standard fiAPI messages.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="fiHeader" type="fi:fiHeader_Type">
+					<xsd:annotation>
+						<xsd:documentation>The fiHeader element contains all header information for standard fiAPI message set transactions.  The fiHeader_Type complex type is defined in fiAPI.xsd.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:choice>
+					<xsd:element name="Request" type="Request_Type" nillable="true">
+						<xsd:annotation>
+							<xsd:documentation>The Request element contains all request data.  The Request_Type complex type is defined in this message set schema.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="Response" type="Response_Type" nillable="true">
+						<xsd:annotation>
+							<xsd:documentation>The Response element contains all response data.  The Response_Type complex type is defined in this message set schema.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="Request_Type">
+		<xsd:sequence>
+			<xsd:element name="ICRequest" type="ICRequest_Type">
+				<xsd:annotation>
+					<xsd:documentation>The Request portion of the AddPoints fiAPI message</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="TypeOfRequest" type="xsd:string" use="required"/>
+		<xsd:attribute name="RequestID" type="xsd:string" use="optional"/>
+		<xsd:attribute name="Echo" type="xsd:boolean" use="required"/>
+		<xsd:attribute name="ServiceOverride" type="xsd:string" use="optional"/>
+		<xsd:attribute name="ServiceProviderID" type="xsd:string" use="optional"/>
+		<xsd:attribute name="MaximumTime" type="xsd:integer" use="optional"/>
+		<xsd:attribute name="Version" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Maximum time to process this requested.  This option can allow the client to request a specific timeout if the service provider supports the functionality.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="MaximumRows" type="xsd:integer" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Maximum rows to return.  This option can allow the client to request a limit to the number of rows (records) that the service provider will return.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="Response_Type">
+		<xsd:sequence>
+			<xsd:element name="Status" type="fi:Status_Type" maxOccurs="unbounded"/>
+			<xsd:element name="RequestEcho" type="Request_Type" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Request echo that can be optionally provided</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ICResponse" type="ICResponse_Type" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>The Response portion of the AddPoints fiAPI message</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="TypeOfResponse" type="xsd:string" use="optional"/>
+		<xsd:attribute name="RequestID" type="xsd:string" use="optional"/>
+		<xsd:attribute name="ServiceOverride" type="xsd:string" use="optional"/>
+		<xsd:attribute name="ServiceProviderID" type="xsd:string" use="optional"/>
+		<xsd:attribute name="More" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>More data indicator.  This option is frequently used in conjunction with Cursor to provide the client control over potentially large result sets.  It indicates that the service provider has not exhausted his data set.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="Cursor" type="xsd:base64Binary" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Cursor position within data set.  This option is frequently used in conjunction with Cursor (or with MaximumRows and TotalRows) to provide the client control over potentially large result sets.  It can be returned to the service provider on the next call to indicate where to start within a result set.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="TotalRows" type="xsd:integer" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Total rows available.  This option is usually used in conjunction with MaximumRows and Cursor to provide the client control over potentially large result sets.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="ICRequest_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the AddPoints Request Aggregate.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Info" type="iclr:RewardsKeyInfo_Type">
+				<xsd:annotation>
+					<xsd:documentation>The Card Key Information section of the request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AddPoints" type="AddPoints_Type" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The AddPoints Information section of the request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ICResponse_Type">
+		<xsd:annotation>
+			<xsd:documentation>The definition of the AddPoints Response.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+
+			<xsd:element name="InfoResponse" type="iclr:RewardsKeyInfo_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>The Rewards Key Information section of the response.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PointsInfo" type="iclr:PointsInfo_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>The Points Information section of the response.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ScoreID" type="iclr:ScoreID_Type" minOccurs="0" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>The ScoreID Information section of the request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AddPoints_Type">
+		<xsd:annotation>
+			<xsd:documentation>This section holds information of related add points associated to a cardholder record.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Points" type="iclr:Points_Type" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The Points Information section of the request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Description" type="iclr:Description_Type" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The Description Information section of the request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Vest" type="xsd:boolean" minOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>The Vest Information section of the request.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>
